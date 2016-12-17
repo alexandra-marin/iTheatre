@@ -1,22 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Threading.Tasks;
 using NUnit.Framework;
-using System;
 
-namespace iTheatre.UnitTests
+namespace iTheatre.Tests
 {
 	[TestFixture()]
 	public class ReleaseTimeTests
 	{
 		[Test()]
-		public void StarWarsEpisodeVIsReleasedInTheWeekOf20June1980 ()
+		public async Task StarWarsEpisodeVIsReleasedInTheWeekOf20June1980()
 		{
 			DateTime time = new DateTime(1980, 6, 20);
 
-			Movie movie = new Movie(new List<Actor>());
-			movie.StartDate = new DateTime(1980, 6, 20);
-			movie.EndDate = new DateTime(1980, 7, 20);
+			var service = new MoviesAPI();
+			Movie movie = await service.GetMovie("Empire strikes back");
 
 			Assert.That(movie.InTheatreNow(time), Is.True);
 		}
 	}
 }
+
