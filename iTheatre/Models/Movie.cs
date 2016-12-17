@@ -9,8 +9,11 @@ namespace iTheatre
 		public float AverageAge => averageAge;
 
 		public Movie(List<Actor> actors)
-		{ 
-			averageAge = actors.Sum(x => x.Age) / actors.Count;
+		{
+			averageAge =
+				actors?.Count > 0 ?
+					actors.Sum(x => x.Age) / actors.Count :
+			    	0;
 		}
 	}
 }
