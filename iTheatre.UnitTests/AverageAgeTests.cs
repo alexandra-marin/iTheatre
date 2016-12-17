@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using NUnit.Framework;
 
 namespace iTheatre.UnitTests
 {
 	[TestFixture()]
-	public class Test
+	public class AverageAgeTests
 	{
 		[Test()]
 		public void MovieWithOneActorHasAverageAgeOfActor()

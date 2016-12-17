@@ -34,7 +34,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Test.cs" />
+    <Compile Include="AverageAgeTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
