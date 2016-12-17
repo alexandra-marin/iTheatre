@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iTheatre", "iTheatre\iTheatre.csproj", "{DCBDEAC6-9F10-40B1-9361-7FF39EBA50E2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iTheatre.UnitTests", "iTheatre.UnitTests\iTheatre.UnitTests.csproj", "{5669892F-EA4F-4583-B559-4F9927A64F3E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -13,5 +15,9 @@ Global
 		{DCBDEAC6-9F10-40B1-9361-7FF39EBA50E2}.Debug|x86.Build.0 = Debug|x86
 		{DCBDEAC6-9F10-40B1-9361-7FF39EBA50E2}.Release|x86.ActiveCfg = Release|x86
 		{DCBDEAC6-9F10-40B1-9361-7FF39EBA50E2}.Release|x86.Build.0 = Release|x86
+		{5669892F-EA4F-4583-B559-4F9927A64F3E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5669892F-EA4F-4583-B559-4F9927A64F3E}.Debug|x86.Build.0 = Debug|Any CPU
+		{5669892F-EA4F-4583-B559-4F9927A64F3E}.Release|x86.ActiveCfg = Release|Any CPU
+		{5669892F-EA4F-4583-B559-4F9927A64F3E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
