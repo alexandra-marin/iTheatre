@@ -35,6 +35,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AverageAgeTests.cs" />
+    <Compile Include="ReleaseTimeTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
