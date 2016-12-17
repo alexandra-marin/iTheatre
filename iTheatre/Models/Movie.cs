@@ -12,7 +12,7 @@ namespace iTheatre
 		{
 			averageAge =
 				actors?.Count > 0 ?
-					actors.Sum(x => x.Age) / actors.Count :
+					(float) actors.Sum(x => x.Age) / actors.Count :
 			    	0;
 		}
 	}
