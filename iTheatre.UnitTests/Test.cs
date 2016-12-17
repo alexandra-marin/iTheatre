@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using iTheatre;
+using System.Collections.Generic;
 
 namespace iTheatre.UnitTests
 {
@@ -9,11 +9,10 @@ namespace iTheatre.UnitTests
 		[Test()]
 		public void MovieWithOneActorHasAverageAgeOfActor()
 		{
-			Actor actor = new Actor();
-			actor.Age = 30;
-
-			Movie movieWithOneActor = new Movie();
-			movieWithOneActor.Actors.Add(actor);
+			var actorsList = new List<Actor>();
+			actorsList.Add( new Actor() { Age = 30 } );
+			
+			Movie movieWithOneActor = new Movie(actorsList);
 
 			Assert.That(movieWithOneActor.AverageAge, Is.EqualTo(30));
 		}

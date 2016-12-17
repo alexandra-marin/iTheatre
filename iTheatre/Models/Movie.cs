@@ -5,7 +5,12 @@ namespace iTheatre
 {
 	public class Movie
 	{
-		public List<Actor> Actors { get; set; } = new List<Actor>();
-		public float AverageAge => Actors.Sum(x => x.Age) / Actors.Count;
+		private float averageAge;
+		public float AverageAge => averageAge;
+
+		public Movie(List<Actor> actors)
+		{ 
+			averageAge = actors.Sum(x => x.Age) / actors.Count;
+		}
 	}
 }
