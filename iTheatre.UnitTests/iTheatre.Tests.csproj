@@ -35,10 +35,14 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="FakeItEasy">
+      <HintPath>..\packages\FakeItEasy.2.3.2\lib\net40\FakeItEasy.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AverageAgeTests.cs" />
-    <Compile Include="ReleaseTimeTests.cs" />
+    <Compile Include="Unit\AverageAgeTests.cs" />
+    <Compile Include="Unit\ReleaseTimeTests.cs" />
+    <Compile Include="Integration\MovieAPITests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -48,6 +52,10 @@
       <Project>{DCBDEAC6-9F10-40B1-9361-7FF39EBA50E2}</Project>
       <Name>iTheatre</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Unit\" />
+    <Folder Include="Integration\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json;
 
 namespace iTheatre
 {
@@ -10,9 +9,8 @@ namespace iTheatre
 		private float averageAge;
 		public float AverageAge => averageAge;
 
-		[JsonProperty("Released")]
-		private DateTime released;
-		public bool InTheatreNow(DateTime time) => time >= released && time <= released.AddMonths(1);
+		public DateTime Released { get; set; }
+		public bool PlayingOn(DateTime time) => time >= Released && time <= Released.AddMonths(1);
 		
 		public Movie()
 		{

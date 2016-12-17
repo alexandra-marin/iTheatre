@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
+using iTheatre;
 using NUnit.Framework;
 
-namespace iTheatre.Tests
+namespace Unit
 {
 	[TestFixture()]
 	public class AverageAgeTests

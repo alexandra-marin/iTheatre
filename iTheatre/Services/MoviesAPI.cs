@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace iTheatre
 {
-	public class MoviesAPI
+	public class MoviesAPI : IMoviesAPI
 	{
 		private HttpClient client;
 
