@@ -13,6 +13,9 @@ namespace iTheatre
 		[JsonProperty("title")]
 		public string Title { get; set; }
 
+		[JsonProperty("cast")]
+		public List<Actor> Cast { get; set; }
+
 		[JsonProperty("release_date")]
 		public DateTime Released { get; set; }
 		public bool PlayingOn(DateTime time) => time >= Released && time <= Released.AddMonths(1);

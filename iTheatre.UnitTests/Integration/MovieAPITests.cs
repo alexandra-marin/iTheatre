@@ -11,11 +11,22 @@ namespace Integration
 		[Test()]
 		public async Task SearchingForStarWarsShouldReturnTheMovie()
 		{
-			var StarWarsImdbId = "tt0080684";
+			var StarWarsId = "1891";
 			var service = new MoviesAPI();
-			Movie movie = await service.GetMovie(StarWarsImdbId);
+			Movie movie = await service.GetMovie(StarWarsId);
 
 			movie.Title.ShouldBe("The Empire Strikes Back");
+		}
+
+		[Test()]
+		public async Task SearchingForStarWarsCastShouldReturnCarrieFisher()
+		{
+			var StarWarsId = "1891";
+			var actorName = "Carrie Fisher";
+			var service = new MoviesAPI();
+			Movie movie = await service.GetMovieCast(StarWarsId);
+
+			movie.Cast.ShouldContain(x => x.Name == actorName);
 		}
 	}
 }

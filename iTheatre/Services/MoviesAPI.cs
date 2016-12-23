@@ -10,6 +10,7 @@ namespace iTheatre
 
 		private static readonly string baseAddress = "https://api.themoviedb.org/3/";
 		private static readonly string moviePath = "movie/";
+		private static readonly string movieCastPath = "/credits";
 		private static readonly string apiKey = string.Format("?api_key={0}", Credentials.MDBIKey);
 
 		public MoviesAPI()
@@ -29,6 +30,21 @@ namespace iTheatre
 			}
 
 			return JsonConvert.DeserializeObject<Movie>(json);
+		}
+
+		public async Task<Movie> GetMovieCast(string movieId)
+		{
+			string json;
+			var address = baseAddress + moviePath + movieId + movieCastPath + apiKey;
+
+			using (HttpResponseMessage response = await client.GetAsync(address))
+			using (HttpContent content = response.Content)
+			{
+				json = await content.ReadAsStringAsync();
+			}
+
+			var movie = JsonConvert.DeserializeObject<Movie>(json);
+			return movie;
 		}
 	}
 }
