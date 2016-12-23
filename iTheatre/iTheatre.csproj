@@ -72,6 +72,7 @@
     <Folder Include="Resources\" />
     <Folder Include="Models\" />
     <Folder Include="Services\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -90,6 +91,7 @@
     <Compile Include="Services\MoviesAPI.cs" />
     <Compile Include="Services\IMoviesAPI.cs" />
     <Compile Include="Credentials.cs" />
+    <Compile Include="Helpers\WebHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />
