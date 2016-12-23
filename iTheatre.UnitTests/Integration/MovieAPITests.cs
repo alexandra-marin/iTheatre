@@ -11,8 +11,9 @@ namespace Integration
 		[Test()]
 		public async Task SearchingForStarWarsShouldReturnTheMovie()
 		{
+			var StarWarsImdbId = "tt0080684";
 			var service = new MoviesAPI();
-			Movie movie = await service.GetMovie("Star Wars");
+			Movie movie = await service.GetMovie(StarWarsImdbId);
 
 			movie.ShouldNotBe(default(Movie));
 		}
