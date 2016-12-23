@@ -29,10 +29,9 @@ namespace Integration
 		public async Task SearchingForStarWarsCastShouldReturnCarrieFisher()
 		{
 			var actorName = "Carrie Fisher";
-			Movie movie = await service.GetMovieCast(StarWarsId);
+			var cast = await service.GetMovieCast(StarWarsId);
 
-			movie.Cast.ShouldContain(x => x.Name == actorName);
+			cast.ShouldContain(x => x.Name == actorName);
 		}
 	}
 }
-

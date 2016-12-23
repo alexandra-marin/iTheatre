@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
@@ -32,7 +33,7 @@ namespace iTheatre
 			return JsonConvert.DeserializeObject<Movie>(json);
 		}
 
-		public async Task<Movie> GetMovieCast(string movieId)
+		public async Task<List<Actor>> GetMovieCast(string movieId)
 		{
 			string json;
 			var address = baseAddress + moviePath + movieId + movieCastPath + apiKey;
@@ -43,8 +44,10 @@ namespace iTheatre
 				json = await content.ReadAsStringAsync();
 			}
 
-			var movie = JsonConvert.DeserializeObject<Movie>(json);
-			return movie;
+			var definition = new { Cast = new List<Actor>() };
+			var credits = JsonConvert.DeserializeAnonymousType(json, definition);
+
+			return credits.Cast;
 		}
 	}
 }

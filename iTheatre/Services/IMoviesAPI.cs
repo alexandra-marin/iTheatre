@@ -1,10 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace iTheatre
 {
 	public interface IMoviesAPI
 	{
 		Task<Movie> GetMovie(string query);
-		Task<Movie> GetMovieCast(string query);
+		Task<List<Actor>> GetMovieCast(string query);
 	}
 }
