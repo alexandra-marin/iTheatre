@@ -8,11 +8,18 @@ namespace Integration
 	[TestFixture()]
 	public class MovieAPITests
 	{
+		private IMoviesAPI service;
+		private string StarWarsId = "1891";
+
+		[SetUp]
+		public void Init()
+		{
+			service = new MoviesAPI();
+		}
+
 		[Test()]
 		public async Task SearchingForStarWarsShouldReturnTheMovie()
 		{
-			var StarWarsId = "1891";
-			var service = new MoviesAPI();
 			Movie movie = await service.GetMovie(StarWarsId);
 
 			movie.Title.ShouldBe("The Empire Strikes Back");
@@ -21,9 +28,7 @@ namespace Integration
 		[Test()]
 		public async Task SearchingForStarWarsCastShouldReturnCarrieFisher()
 		{
-			var StarWarsId = "1891";
 			var actorName = "Carrie Fisher";
-			var service = new MoviesAPI();
 			Movie movie = await service.GetMovieCast(StarWarsId);
 
 			movie.Cast.ShouldContain(x => x.Name == actorName);
