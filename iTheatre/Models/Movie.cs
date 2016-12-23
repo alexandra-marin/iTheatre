@@ -10,6 +10,9 @@ namespace iTheatre
 		private float averageAge;
 		public float AverageAge => averageAge;
 
+		[JsonProperty("title")]
+		public string Title { get; set; }
+
 		[JsonProperty("release_date")]
 		public DateTime Released { get; set; }
 		public bool PlayingOn(DateTime time) => time >= Released && time <= Released.AddMonths(1);

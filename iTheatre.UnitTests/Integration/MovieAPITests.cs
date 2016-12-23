@@ -15,7 +15,7 @@ namespace Integration
 			var service = new MoviesAPI();
 			Movie movie = await service.GetMovie(StarWarsImdbId);
 
-			movie.ShouldNotBe(default(Movie));
+			movie.Title.ShouldBe("The Empire Strikes Back");
 		}
 	}
 }
