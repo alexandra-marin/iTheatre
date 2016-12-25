@@ -16,7 +16,7 @@ namespace Unit
 		public void MovieWithOneActorHasAverageAgeOfActor()
 		{
 			var actorsList = new List<Actor>();
-			actorsList.Add( new Actor() { Age = 30 } );
+			actorsList.Add( new Actor() { Birthday = DateTime.Now.AddYears(-30) } );
 			
 			Movie movieWithOneActor = new Movie(actorsList);
 
@@ -37,8 +37,8 @@ namespace Unit
 		public void MovieWithTwoActorsHasAverageAgeEqualToMean()
 		{
 			var actorsList = new List<Actor>();
-			actorsList.Add(new Actor() { Age = 1 });
-			actorsList.Add(new Actor() { Age = 2 });
+			actorsList.Add(new Actor() { Birthday = DateTime.Now.AddYears(-1) });
+			actorsList.Add(new Actor() { Birthday = DateTime.Now.AddYears(-2) });
 
 			Movie movie = new Movie(actorsList);
 

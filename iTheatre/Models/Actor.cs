@@ -27,17 +27,7 @@ namespace iTheatre
 		}
 
 		private int age;
-		public int Age
-		{
-			get
-			{
-				return age;
-			}
-			set
-			{
-				age = value;
-			}
-		}
+		public int Age => age;
 
 		private void CalculateAge()
 		{
