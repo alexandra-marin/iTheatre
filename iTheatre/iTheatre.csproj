@@ -90,8 +90,8 @@
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Services\MoviesAPI.cs" />
     <Compile Include="Services\IMoviesAPI.cs" />
-    <Compile Include="Credentials.cs" />
     <Compile Include="Helpers\WebHelper.cs" />
+    <Compile Include="Helpers\Credentials.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />
