@@ -18,7 +18,8 @@ namespace Unit
 			var actorsList = new List<Actor>();
 			actorsList.Add( new Actor() { Birthday = DateTime.Now.AddYears(-30) } );
 			
-			Movie movieWithOneActor = new Movie(actorsList);
+			Movie movieWithOneActor = new Movie();
+			movieWithOneActor.Cast = actorsList;
 
 			Assert.That(movieWithOneActor.AverageAge, Is.EqualTo(30));
 		}
@@ -28,9 +29,10 @@ namespace Unit
 		{
 			var actorsList = new List<Actor>();
 
-			Movie movieWithOneActor = new Movie(actorsList);
-
-			Assert.That(movieWithOneActor.AverageAge, Is.EqualTo(0));
+			Movie movieWithNoActors = new Movie();
+			movieWithNoActors.Cast = actorsList;
+			
+			Assert.That(movieWithNoActors.AverageAge, Is.EqualTo(0));
 		}
 
 		[Test()]
@@ -40,8 +42,9 @@ namespace Unit
 			actorsList.Add(new Actor() { Birthday = DateTime.Now.AddYears(-1) });
 			actorsList.Add(new Actor() { Birthday = DateTime.Now.AddYears(-2) });
 
-			Movie movie = new Movie(actorsList);
-
+			Movie movie = new Movie();
+			movie.Cast = actorsList;
+			
 			Assert.That(movie.AverageAge, Is.EqualTo(1.5));
 		}
 

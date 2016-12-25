@@ -31,15 +31,6 @@ namespace iTheatre
 		[JsonProperty("release_date")]
 		public DateTime Released { get; set; }
 		public bool PlayingOn(DateTime time) => time >= Released && time <= Released.AddMonths(1);
-		
-		public Movie()
-		{
-		}
-
-		public Movie(List<Actor> actors)
-		{
-			CalculateAverageAge(actors);
-		}
 
 		void CalculateAverageAge(List<Actor> actors)
 		{
