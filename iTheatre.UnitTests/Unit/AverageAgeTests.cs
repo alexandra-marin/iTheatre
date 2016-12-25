@@ -21,7 +21,7 @@ namespace Unit
 			Movie movieWithOneActor = new Movie();
 			movieWithOneActor.Cast = actorsList;
 
-			Assert.That(movieWithOneActor.AverageAge, Is.EqualTo(30));
+			movieWithOneActor.AverageAge.ShouldBe(30);
 		}
 
 		[Test()]
@@ -32,7 +32,7 @@ namespace Unit
 			Movie movieWithNoActors = new Movie();
 			movieWithNoActors.Cast = actorsList;
 			
-			Assert.That(movieWithNoActors.AverageAge, Is.EqualTo(0));
+			movieWithNoActors.AverageAge.ShouldBe(0);
 		}
 
 		[Test()]
@@ -45,7 +45,7 @@ namespace Unit
 			Movie movie = new Movie();
 			movie.Cast = actorsList;
 			
-			Assert.That(movie.AverageAge, Is.EqualTo(1.5));
+			movie.AverageAge.ShouldBe(1.5f);
 		}
 
 		[Test()]
