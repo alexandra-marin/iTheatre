@@ -75,7 +75,7 @@ namespace Unit
 			A.CallTo(() => service.GetBirthday(carrieFisher.Id)).Returns(carrieFisher.Birthday);
 			A.CallTo(() => service.GetBirthday(davidProwse .Id)).Returns(davidProwse .Birthday);
 
-			var movieId = "1";
+			var movieId = A.Dummy<string>();
 
 			var movie = await service.GetMovie(movieId);
 			var cast = await service.GetMovieCast(movieId);
