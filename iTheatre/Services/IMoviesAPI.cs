@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace iTheatre
@@ -7,5 +8,6 @@ namespace iTheatre
 	{
 		Task<Movie> GetMovie(string query);
 		Task<List<Actor>> GetMovieCast(string query);
+		Task<DateTime> GetBirthday(string query);
 	}
 }

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using iTheatre;
 using NUnit.Framework;
 using Shouldly;
@@ -32,6 +33,16 @@ namespace Integration
 			var cast = await service.GetMovieCast(StarWarsId);
 
 			cast.ShouldContain(x => x.Name == actorName);
+		}
+
+		[Test()]
+		public async Task SearchingForCarrieFisherBioShouldReturnBirthday()
+		{
+			var actorId = "4";
+			var date = new DateTime(1956, 10, 21);
+			var birthday = await service.GetBirthday(actorId);
+
+			birthday.ShouldBe(date);
 		}
 	}
 }

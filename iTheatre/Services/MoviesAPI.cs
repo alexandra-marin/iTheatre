@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
@@ -8,6 +9,7 @@ namespace iTheatre
 	{
 		private static readonly string baseAddress = "https://api.themoviedb.org/3/";
 		private static readonly string moviePath = "movie/";
+		private static readonly string actorPath = "person/";
 		private static readonly string movieCastPath = "/credits";
 		private static readonly string apiKey = string.Format("?api_key={0}", Credentials.MDBIKey);
 
@@ -30,6 +32,17 @@ namespace iTheatre
 			var credits = JsonConvert.DeserializeAnonymousType(json, definition);
 
 			return credits.Cast;
+		}
+
+		public async Task<DateTime> GetBirthday(string personId)
+		{
+			var address = baseAddress + actorPath + personId + apiKey;
+			var json = await client.Get(address);
+
+			var definition = new { Birthday = new DateTime() };
+			var bio = JsonConvert.DeserializeAnonymousType(json, definition);
+
+			return bio.Birthday;
 		}
 	}
 }
