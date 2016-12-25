@@ -14,7 +14,19 @@ namespace iTheatre
 		public string Title { get; set; }
 
 		[JsonProperty("cast")]
-		public List<Actor> Cast { get; set; }
+		private List<Actor> cast { get; set; }
+		public List<Actor> Cast 
+		{ 
+			get
+			{
+				return cast;
+			}
+			set
+			{
+				cast = value;
+				CalculateAverageAge(cast);
+			}
+		}
 
 		[JsonProperty("release_date")]
 		public DateTime Released { get; set; }
@@ -26,10 +38,15 @@ namespace iTheatre
 
 		public Movie(List<Actor> actors)
 		{
+			CalculateAverageAge(actors);
+		}
+
+		void CalculateAverageAge(List<Actor> actors)
+		{
 			averageAge =
 				actors?.Count > 0 ?
-					(float) actors.Sum(x => x.Age) / actors.Count :
-			    	0;
+					(float)actors.Sum(x => x.Age) / actors.Count :
+					0;
 		}
 	}
 }
