@@ -24,19 +24,15 @@ namespace iTheatre
 			set
 			{
 				cast = value;
-				CalculateAverageAge(cast);
+				CalculateAverageAge();
 			}
 		}
 
-		[JsonProperty("release_date")]
-		public DateTime Released { get; set; }
-		public bool PlayingOn(DateTime time) => time >= Released && time <= Released.AddMonths(1);
-
-		void CalculateAverageAge(List<Actor> actors)
+		private void CalculateAverageAge()
 		{
 			averageAge =
-				actors?.Count > 0 ?
-					(float)actors.Sum(x => x.Age) / actors.Count :
+				cast?.Count > 0 ?
+					(float)cast.Sum(x => x.Age) / cast.Count :
 					0;
 		}
 	}
