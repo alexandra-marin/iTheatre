@@ -66,8 +66,8 @@ namespace Unit
 			starWarsCast.Add(carrieFisher);
 			starWarsCast.Add(davidProwse);
 
-			var averageAge = starWarsCast.Sum(x => DateTime.Now.Year - x.Birthday.Year)
-                         	 / starWarsCast.Count();
+			var atTime = new DateTime(2016, 12, 26);
+			var averageAge = 70;
 
 			A.CallTo(() => service.GetMovie(A<string>.Ignored)).Returns(starWarsMovie);
 			A.CallTo(() => service.GetMovieCast(A<string>.Ignored)).Returns(starWarsCast);
@@ -83,7 +83,10 @@ namespace Unit
 			var cast = await service.GetMovieCast(movieId);
 			movie.Cast = cast;
 
-			movie.AverageAge.ShouldBe(averageAge);
+			var calculator = new AgeCalculator();
+			var starWarsAverageAge = calculator.ReturnAverageAge(movie.Cast, atTime);
+
+			starWarsAverageAge.ShouldBe(averageAge);
 		}
 	}
 }
