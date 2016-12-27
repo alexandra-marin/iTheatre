@@ -100,5 +100,16 @@ namespace Unit
 
 			starWarsAverageAge.ShouldBe(averageAgeIn2016);
 		}
+
+		[Test()]
+		public void ActorBorn30YearsAgoTomorrowHasAge29()
+		{
+			var cast = new List<Actor>();
+			cast.Add(new Actor() { Birthday = testingTime.AddYears(-30).AddDays(1) });
+
+			var averageAge = calculator.ReturnAverageAge(cast, testingTime);
+
+			averageAge.ShouldBe(29);
+		}
 	}
 }
