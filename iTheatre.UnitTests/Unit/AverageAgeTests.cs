@@ -13,23 +13,21 @@ namespace Unit
 	{
 		private AgeCalculator calculator;
 		private DateTime testingTime = new DateTime(2016, 12, 26);
-		
+		private List<Actor> cast;
+
 		[SetUp]
 		public void Init()
 		{
 			calculator = new AgeCalculator();
+			cast = new List<Actor>();
 		}
 
 		[Test()]
 		public void MovieWithOneActorHasAverageAgeOfActor()
 		{
-			var actorsList = new List<Actor>();
-			actorsList.Add( new Actor() { Birthday = testingTime.AddYears(-30) } );
-			
-			Movie movieWithOneActor = new Movie();
-			movieWithOneActor.Cast = actorsList;
+			cast.Add( new Actor() { Birthday = testingTime.AddYears(-30) } );
 
-			var averageAge = calculator.ReturnAverageAge(movieWithOneActor.Cast, testingTime);
+			var averageAge = calculator.ReturnAverageAge(cast, testingTime);
 			
 			averageAge.ShouldBe(30);
 		}
@@ -37,12 +35,7 @@ namespace Unit
 		[Test()]
 		public void MovieWithNoActorsHasAverageAgeEqualTo0()
 		{
-			var actorsList = new List<Actor>();
-
-			Movie movieWithNoActors = new Movie();
-			movieWithNoActors.Cast = actorsList;
-
-			var averageAge = calculator.ReturnAverageAge(movieWithNoActors.Cast, testingTime);
+			var averageAge = calculator.ReturnAverageAge(cast, testingTime);
 			
 			averageAge.ShouldBe(0);
 		}
@@ -50,14 +43,10 @@ namespace Unit
 		[Test()]
 		public void MovieWithTwoActorsHasAverageAgeEqualToMean()
 		{
-			var actorsList = new List<Actor>();
-			actorsList.Add(new Actor() { Birthday = testingTime.AddYears(-1) });
-			actorsList.Add(new Actor() { Birthday = testingTime.AddYears(-2) });
-
-			Movie movie = new Movie();
-			movie.Cast = actorsList;
+			cast.Add(new Actor() { Birthday = testingTime.AddYears(-1) });
+			cast.Add(new Actor() { Birthday = testingTime.AddYears(-2) });
 			
-			var averageAge = calculator.ReturnAverageAge(movie.Cast, testingTime);
+			var averageAge = calculator.ReturnAverageAge(cast, testingTime);
 
 			averageAge.ShouldBe(1.5f);
 		}
@@ -69,7 +58,6 @@ namespace Unit
 
 			var service = A.Fake<IMoviesAPI>();
 
-			var starWarsMovie = new Movie();
 			var starWarsCast = new List<Actor>();
 
 			var markHamill   = new Actor() { Id = "1", Birthday = new DateTime(1951, 09, 25) };
@@ -82,7 +70,6 @@ namespace Unit
 			starWarsCast.Add(carrieFisher);
 			starWarsCast.Add(davidProwse);
 
-			A.CallTo(() => service.GetMovie(A<string>.Ignored)).Returns(starWarsMovie);
 			A.CallTo(() => service.GetMovieCast(A<string>.Ignored)).Returns(starWarsCast);
 
 			A.CallTo(() => service.GetBirthday(markHamill  .Id)).Returns(markHamill  .Birthday);
@@ -91,12 +78,9 @@ namespace Unit
 			A.CallTo(() => service.GetBirthday(davidProwse .Id)).Returns(davidProwse .Birthday);
 
 			var movieId = A.Dummy<string>();
+			cast = await service.GetMovieCast(movieId);
 
-			var movie = await service.GetMovie(movieId);
-			var cast = await service.GetMovieCast(movieId);
-			movie.Cast = cast;
-
-			var starWarsAverageAge = calculator.ReturnAverageAge(movie.Cast, testingTime);
+			var starWarsAverageAge = calculator.ReturnAverageAge(cast, testingTime);
 
 			starWarsAverageAge.ShouldBe(averageAgeIn2016);
 		}
@@ -104,7 +88,6 @@ namespace Unit
 		[Test()]
 		public void ActorBorn30YearsAgoTomorrowHasAge29()
 		{
-			var cast = new List<Actor>();
 			cast.Add(new Actor() { Birthday = testingTime.AddYears(-30).AddDays(1) });
 
 			var averageAge = calculator.ReturnAverageAge(cast, testingTime);
