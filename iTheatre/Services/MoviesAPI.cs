@@ -9,11 +9,23 @@ namespace iTheatre
 	{
 		private static readonly string baseAddress = "https://api.themoviedb.org/3/";
 		private static readonly string moviePath = "movie/";
-		private static readonly string actorPath = "person/";
+		private static readonly string nowPlayingPath = "now_playing";
 		private static readonly string movieCastPath = "/credits";
+		private static readonly string actorPath = "person/";
 		private static readonly string apiKey = string.Format("?api_key={0}", Credentials.MDBIKey);
 
 		private WebHelper client = new WebHelper();
+
+		public async Task<List<Movie>> GetNowPlaying()
+		{
+			var address = baseAddress + moviePath + nowPlayingPath + apiKey;
+			var json = await client.Get(address);
+
+			var definition = new { results = new List<Movie>() };
+			var program = JsonConvert.DeserializeAnonymousType(json, definition);
+
+			return program.results;		
+		}
 
 		public async Task<Movie> GetMovie(string movieId)
 		{

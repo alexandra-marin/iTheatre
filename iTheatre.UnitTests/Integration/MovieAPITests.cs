@@ -19,6 +19,14 @@ namespace Integration
 		}
 
 		[Test()]
+		public async Task RequestingNowPlayingShouldReturnListOfMovies()
+		{
+			var movies = await service.GetNowPlaying();
+
+			movies.ShouldNotBeEmpty();
+		}
+
+		[Test()]
 		public async Task SearchingForStarWarsShouldReturnTheMovie()
 		{
 			Movie movie = await service.GetMovie(StarWarsId);
