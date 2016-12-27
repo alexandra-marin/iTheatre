@@ -12,26 +12,6 @@ namespace iTheatre
 		public string Name { get; set; }
 
 		[JsonProperty("birthday")]
-		private DateTime birthday;
-		public DateTime Birthday
-		{
-			get
-			{
-				return birthday;
-			}
-			set
-			{
-				birthday = value;
-				CalculateAge();
-			}
-		}
-
-		private int age;
-		public int Age => age;
-
-		private void CalculateAge()
-		{
-			age = DateTime.Now.Year - Birthday.Year;
-		}
+		public DateTime Birthday { get; set; }
 	}
 }

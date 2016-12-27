@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using FakeItEasy;
 using iTheatre;
@@ -12,16 +11,27 @@ namespace Unit
 	[TestFixture()]
 	public class AverageAgeTests
 	{
+		private AgeCalculator calculator;
+		private DateTime testingTime = new DateTime(2016, 12, 26);
+		
+		[SetUp]
+		public void Init()
+		{
+			calculator = new AgeCalculator();
+		}
+
 		[Test()]
 		public void MovieWithOneActorHasAverageAgeOfActor()
 		{
 			var actorsList = new List<Actor>();
-			actorsList.Add( new Actor() { Birthday = DateTime.Now.AddYears(-30) } );
+			actorsList.Add( new Actor() { Birthday = testingTime.AddYears(-30) } );
 			
 			Movie movieWithOneActor = new Movie();
 			movieWithOneActor.Cast = actorsList;
 
-			movieWithOneActor.AverageAge.ShouldBe(30);
+			var averageAge = calculator.ReturnAverageAge(movieWithOneActor.Cast, testingTime);
+			
+			averageAge.ShouldBe(30);
 		}
 
 		[Test()]
@@ -31,26 +41,32 @@ namespace Unit
 
 			Movie movieWithNoActors = new Movie();
 			movieWithNoActors.Cast = actorsList;
+
+			var averageAge = calculator.ReturnAverageAge(movieWithNoActors.Cast, testingTime);
 			
-			movieWithNoActors.AverageAge.ShouldBe(0);
+			averageAge.ShouldBe(0);
 		}
 
 		[Test()]
 		public void MovieWithTwoActorsHasAverageAgeEqualToMean()
 		{
 			var actorsList = new List<Actor>();
-			actorsList.Add(new Actor() { Birthday = DateTime.Now.AddYears(-1) });
-			actorsList.Add(new Actor() { Birthday = DateTime.Now.AddYears(-2) });
+			actorsList.Add(new Actor() { Birthday = testingTime.AddYears(-1) });
+			actorsList.Add(new Actor() { Birthday = testingTime.AddYears(-2) });
 
 			Movie movie = new Movie();
 			movie.Cast = actorsList;
 			
-			movie.AverageAge.ShouldBe(1.5f);
+			var averageAge = calculator.ReturnAverageAge(movie.Cast, testingTime);
+
+			averageAge.ShouldBe(1.5f);
 		}
 
 		[Test()]
 		public async Task StarWarsAverageAgeIs()
 		{
+			var averageAgeIn2016 = 70;
+
 			var service = A.Fake<IMoviesAPI>();
 
 			var starWarsMovie = new Movie();
@@ -66,9 +82,6 @@ namespace Unit
 			starWarsCast.Add(carrieFisher);
 			starWarsCast.Add(davidProwse);
 
-			var atTime = new DateTime(2016, 12, 26);
-			var averageAge = 70;
-
 			A.CallTo(() => service.GetMovie(A<string>.Ignored)).Returns(starWarsMovie);
 			A.CallTo(() => service.GetMovieCast(A<string>.Ignored)).Returns(starWarsCast);
 
@@ -83,10 +96,9 @@ namespace Unit
 			var cast = await service.GetMovieCast(movieId);
 			movie.Cast = cast;
 
-			var calculator = new AgeCalculator();
-			var starWarsAverageAge = calculator.ReturnAverageAge(movie.Cast, atTime);
+			var starWarsAverageAge = calculator.ReturnAverageAge(movie.Cast, testingTime);
 
-			starWarsAverageAge.ShouldBe(averageAge);
+			starWarsAverageAge.ShouldBe(averageAgeIn2016);
 		}
 	}
 }
