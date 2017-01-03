@@ -41,6 +41,15 @@ namespace Unit
 		}
 
 		[Test()]
+		public void MovieWithUndefinedActorAgeHasAverageAgeEqualTo0()
+		{
+			cast.Add(new Actor() { Birthday = default(DateTime) });
+			var averageAge = calculator.ReturnAverageAge(cast, testingTime);
+
+			averageAge.ShouldBe(0);
+		}
+
+		[Test()]
 		public void MovieWithTwoActorsHasAverageAgeEqualToMean()
 		{
 			cast.Add(new Actor() { Birthday = testingTime.AddYears(-1) });
