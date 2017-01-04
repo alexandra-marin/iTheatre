@@ -8,11 +8,16 @@ namespace iTheatre
 	{
 		public float ReturnAverageAge(List<Actor> cast, DateTime atTime)
 		{
-			var averageAge =
-				cast?.Count > 0 ?
-					(float) cast.Where(x => x.Birthday != default(DateTime))
-				     			.Sum(x => CalculateAge(atTime, x.Birthday)) / cast.Count :
-					0;
+			var averageAge = 0f;
+
+			if(cast?.Count > 0)
+			{
+				var validAges = cast.Where(x => x.Birthday != default(DateTime)).ToList();
+				if(validAges.Count > 0)
+				{
+					averageAge = (float) validAges.Sum(x => CalculateAge(atTime, x.Birthday)) / validAges.Count;
+				}
+			}
 
 			return averageAge;
 		}
