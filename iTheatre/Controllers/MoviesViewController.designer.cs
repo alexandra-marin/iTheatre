@@ -13,6 +13,9 @@ namespace iTheatre.Views
 	partial class MoviesViewController
 	{
 		[Outlet]
+		AppKit.NSTextField AverageAgeLabel { get; set; }
+
+		[Outlet]
 		AppKit.NSTableView MoviesTable { get; set; }
 		
 		void ReleaseDesignerOutlets ()
@@ -20,6 +23,11 @@ namespace iTheatre.Views
 			if (MoviesTable != null) {
 				MoviesTable.Dispose ();
 				MoviesTable = null;
+			}
+
+			if (AverageAgeLabel != null) {
+				AverageAgeLabel.Dispose ();
+				AverageAgeLabel = null;
 			}
 		}
 	}

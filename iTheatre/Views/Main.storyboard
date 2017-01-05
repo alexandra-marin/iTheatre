@@ -689,7 +689,7 @@
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
                                                 <tableColumn width="235" minWidth="40" maxWidth="1000" id="rn1-bw-yOo">
-                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Movies">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -733,7 +733,7 @@
                                     <rect key="frame" x="1" y="119" width="223" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="rZW-Yy-rD0">
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="rZW-Yy-rD0">
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -742,15 +742,27 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Daw-NM-KZ1">
+                                <rect key="frame" x="238" y="253" width="244" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" placeholderString="Average age" id="lfO-lZ-YUM">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Daw-NM-KZ1" secondAttribute="trailing" id="B6t-F3-QLZ"/>
                             <constraint firstAttribute="bottom" secondItem="heH-kQ-eY2" secondAttribute="bottom" id="IQh-6J-NXd"/>
+                            <constraint firstItem="Daw-NM-KZ1" firstAttribute="leading" secondItem="heH-kQ-eY2" secondAttribute="trailing" id="McL-gv-pFr"/>
+                            <constraint firstItem="Daw-NM-KZ1" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="N2b-zS-FWI"/>
                             <constraint firstAttribute="centerX" secondItem="heH-kQ-eY2" secondAttribute="trailing" id="jU7-o0-ti3"/>
                             <constraint firstItem="heH-kQ-eY2" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="sFq-r2-6Am"/>
                             <constraint firstItem="heH-kQ-eY2" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="v9P-tw-Qnf"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="AverageAgeLabel" destination="Daw-NM-KZ1" id="YHd-JT-waD"/>
                         <outlet property="MoviesTable" destination="PeB-3z-8RJ" id="1ZC-Ys-zax"/>
                     </connections>
                 </viewController>
