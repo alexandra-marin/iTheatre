@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Unit\AverageAgeTests.cs" />
     <Compile Include="Integration\MovieAPITests.cs" />
+    <Compile Include="Unit\ParsingTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

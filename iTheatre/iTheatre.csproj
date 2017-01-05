@@ -93,6 +93,7 @@
     <Compile Include="Services\IMoviesAPI.cs" />
     <Compile Include="Helpers\WebHelper.cs" />
     <Compile Include="Helpers\AgeCalculator.cs" />
+    <Compile Include="Helpers\HtmlParser.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />

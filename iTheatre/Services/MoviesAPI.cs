@@ -15,26 +15,14 @@ namespace iTheatre
 		private static readonly string actorPath = "name/";
 
 		private WebHelper client = new WebHelper();
+		private HtmlParser parser = new HtmlParser();
 
 		public async Task<List<Movie>> GetNowPlaying()
 		{
 			var address = baseAddress + nowPlayingPath;
 			var html = await client.Get(address);
 
-			var htmldoc = new HtmlDocument();
-			htmldoc.LoadHtml(html);
-
-			var movies = htmldoc.DocumentNode
-			                    .Descendants("h4")
-			                    .Select(d => d.Descendants("a").FirstOrDefault())
-								.Select(x => new Movie()
-								{
-									Title = x.Attributes["title"]?.Value,
-									Id = Regex.Match(x.Attributes["href"]?.Value, @"\/title\/(.*?)\/\?").Groups[1].Value
-								})
-			                    .ToList();
-
-			return movies;		
+			return parser.ReturnNowPlayingMoviesFrom(html);		
 		}
 
 		public async Task<List<Actor>> GetMovieCast(string movieId)
@@ -42,22 +30,7 @@ namespace iTheatre
 			var address = baseAddress + movieCastPath + movieId;
 			var html = await client.Get(address);
 
-			var htmldoc = new HtmlDocument();
-			htmldoc.LoadHtml(html);
-
-			var actors = htmldoc.DocumentNode
-								.Descendants("table")
-								.First(x => x.Attributes["class"]?.Value == "cast_list")
-								.Descendants()
-								.Where(d => d.Attributes["itemprop"]?.Value == "actor")
-								.Select(x => new Actor()
-								{
-									Id = Regex.Match(x.Descendants("a").FirstOrDefault().Attributes["href"]?.Value, @"\/name\/(.*?)\/\?").Groups[1].Value,
-									Name = x.Descendants("span").FirstOrDefault( s=> s.Attributes["itemprop"]?.Value == "name").InnerText
-								})
-								.ToList();
-
-			return actors;
+			return parser.ReturnCastFrom(html);
 		}
 
 		public async Task<DateTime> GetBirthday(string personId)
@@ -65,22 +38,7 @@ namespace iTheatre
 			var address = baseAddress + actorPath + personId;
 			var html = await client.Get(address);
 
-			var htmldoc = new HtmlDocument();
-			htmldoc.LoadHtml(html);
-
-			var date = default(DateTime);
-			try
-			{
-				var birthDate = htmldoc.DocumentNode
-									.Descendants("time")
-									.First(x => x.Attributes["itemprop"]?.Value == "birthDate")
-									.Attributes["datetime"]?.Value;
-
-				DateTime.TryParse(birthDate, out date);
-			}
-			catch (Exception e) {}
-
-			return date;
+			return parser.ReturnDateFrom(html);
 		}
 	}
 }
