@@ -6,10 +6,11 @@ namespace iTheatre
 {
 	public class MoviesViewDelegate : NSTableViewDelegate
 	{
-		private const string CellIdentifier = "MovieCell";
+		private const string cellIdentifier = "MovieCell";
 
 		private MoviesViewDataSource dataSource;
 		private Action<Movie> action;
+		private bool working;
 
 		public MoviesViewDelegate(MoviesViewDataSource dataSource, Action<Movie> action)
 		{
@@ -19,24 +20,45 @@ namespace iTheatre
 
 		public override NSView GetViewForItem(NSTableView tableView, NSTableColumn tableColumn, nint row)
 		{
-			NSTextField view = (NSTextField)tableView.MakeView(CellIdentifier, this);
+			NSTextField view = (NSTextField)tableView.MakeView(cellIdentifier, this);
 			if (view == null)
 			{
-				view = new NSTextField();
-				view.Identifier = CellIdentifier;
-				view.BackgroundColor = NSColor.Clear;
-				view.Bordered = false;
-				view.Editable = false;
+				view = new NSTextField()
+				{
+					Identifier = cellIdentifier,
+					BackgroundColor = NSColor.Clear,
+					Bordered = false,
+					Editable = false,
+				};
 			}
 
-			view.StringValue = dataSource.Movies[(int)row].Title;
+			var movie = dataSource.Movies[(int)row];
+			view.StringValue = movie.Title;
 
 			return view;
 		}
 
 		public override void SelectionDidChange(NSNotification notification)
 		{
-			action(dataSource.Movies[(int)(notification.Object as NSTableView).SelectedRow]);
+			var index = (int)(notification.Object as NSTableView).SelectedRow;
+			var movie = dataSource.Movies[index];
+
+			action(movie);
+		}
+
+		public override bool ShouldSelectRow(NSTableView tableView, nint row)
+		{
+			return !working;
+		}
+
+		public void BlockSelection()
+		{
+			working = true;
+		}
+
+		public void UnblockSelection()
+		{
+			working = false;
 		}
 	}
 }
