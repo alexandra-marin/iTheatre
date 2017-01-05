@@ -1,5 +1,6 @@
 ﻿using System;
 using AppKit;
+using Foundation;
 
 namespace iTheatre
 {
@@ -7,11 +8,13 @@ namespace iTheatre
 	{
 		private const string CellIdentifier = "MovieCell";
 
-		private MoviesViewDataSource DataSource;
+		private MoviesViewDataSource dataSource;
+		private Action<Movie> action;
 
-		public MoviesViewDelegate(MoviesViewDataSource datasource)
+		public MoviesViewDelegate(MoviesViewDataSource dataSource, Action<Movie> action)
 		{
-			this.DataSource = datasource;
+			this.dataSource = dataSource;
+			this.action = action;
 		}
 
 		public override NSView GetViewForItem(NSTableView tableView, NSTableColumn tableColumn, nint row)
@@ -23,13 +26,17 @@ namespace iTheatre
 				view.Identifier = CellIdentifier;
 				view.BackgroundColor = NSColor.Clear;
 				view.Bordered = false;
-				view.Selectable = false;
 				view.Editable = false;
 			}
 
-			view.StringValue = DataSource.Movies[(int)row].Title;
+			view.StringValue = dataSource.Movies[(int)row].Title;
 
 			return view;
+		}
+
+		public override void SelectionDidChange(NSNotification notification)
+		{
+			action(dataSource.Movies[(int)(notification.Object as NSTableView).SelectedRow]);
 		}
 	}
 }
