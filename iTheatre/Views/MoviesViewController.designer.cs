@@ -12,9 +12,15 @@ namespace iTheatre.Views
 	[Register ("MoviesViewController")]
 	partial class MoviesViewController
 	{
+		[Outlet]
+		AppKit.NSTableView MoviesTable { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (MoviesTable != null) {
+				MoviesTable.Dispose ();
+				MoviesTable = null;
+			}
 		}
 	}
 }

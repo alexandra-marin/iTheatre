@@ -94,6 +94,8 @@
     <Compile Include="Views\MoviesViewController.designer.cs">
       <DependentUpon>MoviesViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\MoviesViewDataSource.cs" />
+    <Compile Include="Views\MoviesViewDelegate.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Views\Main.storyboard" />
