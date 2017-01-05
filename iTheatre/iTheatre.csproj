@@ -74,6 +74,7 @@
     <Folder Include="Services\" />
     <Folder Include="Helpers\" />
     <Folder Include="Views\" />
+    <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -90,12 +91,12 @@
     <Compile Include="Helpers\WebHelper.cs" />
     <Compile Include="Helpers\AgeCalculator.cs" />
     <Compile Include="Helpers\HtmlParser.cs" />
-    <Compile Include="Views\MoviesViewController.cs" />
-    <Compile Include="Views\MoviesViewController.designer.cs">
-      <DependentUpon>MoviesViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\MoviesViewDataSource.cs" />
     <Compile Include="Views\MoviesViewDelegate.cs" />
+    <Compile Include="Controllers\MoviesViewController.cs" />
+    <Compile Include="Controllers\MoviesViewController.designer.cs">
+      <DependentUpon>MoviesViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Views\Main.storyboard" />
