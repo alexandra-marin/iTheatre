@@ -90,9 +90,9 @@
     <Compile Include="Helpers\WebHelper.cs" />
     <Compile Include="Helpers\AgeCalculator.cs" />
     <Compile Include="Helpers\HtmlParser.cs" />
-    <Compile Include="Views\ViewController.cs" />
-    <Compile Include="Views\ViewController.designer.cs">
-      <DependentUpon>ViewController.cs</DependentUpon>
+    <Compile Include="Views\MoviesViewController.cs" />
+    <Compile Include="Views\MoviesViewController.designer.cs">
+      <DependentUpon>MoviesViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
