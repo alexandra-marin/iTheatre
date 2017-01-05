@@ -10,8 +10,9 @@ namespace Integration
 	public class MovieAPITests
 	{
 		private IMoviesAPI service;
-		private string StarWarsId = "1891";
-
+		private string StarWarsId = "tt0080684";
+		private string CarrieFisherId = "nm0000402";
+		
 		[SetUp]
 		public void Init()
 		{
@@ -27,14 +28,6 @@ namespace Integration
 		}
 
 		[Test()]
-		public async Task SearchingForStarWarsShouldReturnTheMovie()
-		{
-			Movie movie = await service.GetMovie(StarWarsId);
-
-			movie.Title.ShouldBe("The Empire Strikes Back");
-		}
-
-		[Test()]
 		public async Task SearchingForStarWarsCastShouldReturnCarrieFisher()
 		{
 			var actorName = "Carrie Fisher";
@@ -46,9 +39,8 @@ namespace Integration
 		[Test()]
 		public async Task SearchingForCarrieFisherBioShouldReturnBirthday()
 		{
-			var actorId = "4";
 			var date = new DateTime(1956, 10, 21);
-			var birthday = await service.GetBirthday(actorId);
+			var birthday = await service.GetBirthday(CarrieFisherId);
 
 			birthday.ShouldBe(date);
 		}

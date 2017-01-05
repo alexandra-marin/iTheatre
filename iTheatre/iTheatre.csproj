@@ -50,9 +50,10 @@
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.Mac" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.9.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
@@ -91,7 +92,6 @@
     <Compile Include="Services\MoviesAPI.cs" />
     <Compile Include="Services\IMoviesAPI.cs" />
     <Compile Include="Helpers\WebHelper.cs" />
-    <Compile Include="Helpers\Credentials.cs" />
     <Compile Include="Helpers\AgeCalculator.cs" />
   </ItemGroup>
   <ItemGroup>
