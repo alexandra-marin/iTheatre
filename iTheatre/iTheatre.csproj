@@ -70,10 +70,10 @@
     <ImageAsset Include="Assets.xcassets\Contents.json" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\" />
     <Folder Include="Models\" />
     <Folder Include="Services\" />
     <Folder Include="Helpers\" />
+    <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -83,10 +83,6 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="ViewController.cs" />
-    <Compile Include="ViewController.designer.cs">
-      <DependentUpon>ViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Models\Actor.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Services\MoviesAPI.cs" />
@@ -94,9 +90,13 @@
     <Compile Include="Helpers\WebHelper.cs" />
     <Compile Include="Helpers\AgeCalculator.cs" />
     <Compile Include="Helpers\HtmlParser.cs" />
+    <Compile Include="Views\ViewController.cs" />
+    <Compile Include="Views\ViewController.designer.cs">
+      <DependentUpon>ViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="Views\Main.storyboard" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
 </Project>
