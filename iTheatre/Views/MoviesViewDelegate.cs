@@ -10,11 +10,12 @@ namespace iTheatre
 
 		private MoviesViewDataSource dataSource;
 		private Action<Movie> action;
+		private MoviesViewDataSource movies;
 		private bool working;
 
 		public MoviesViewDelegate(MoviesViewDataSource dataSource, Action<Movie> action)
 		{
-			this.dataSource = dataSource;
+			this.movies = dataSource;
 			this.action = action;
 		}
 
@@ -32,7 +33,7 @@ namespace iTheatre
 				};
 			}
 
-			var movie = dataSource.Movies[(int)row];
+			var movie = movies[(int)row];
 			view.StringValue = movie.Title;
 
 			return view;
@@ -41,7 +42,7 @@ namespace iTheatre
 		public override void SelectionDidChange(NSNotification notification)
 		{
 			var index = (int)(notification.Object as NSTableView).SelectedRow;
-			var movie = dataSource.Movies[index];
+			var movie = movies[index];
 
 			action(movie);
 		}

@@ -6,16 +6,24 @@ namespace iTheatre
 {
 	public class MoviesViewDataSource : NSTableViewDataSource
 	{
-		public List<Movie> Movies;
+		private List<Movie> movies;
+
+		public Movie this[int i]
+		{
+			get
+			{
+				return movies[i];
+			}
+		}
 
 		public MoviesViewDataSource(List<Movie> movies)
 		{
-			Movies = movies;
+			this.movies = movies;
 		}
 
 		public override nint GetRowCount(NSTableView tableView)
 		{
-			return Movies.Count;
+			return movies.Count;
 		}
 	}
 }
