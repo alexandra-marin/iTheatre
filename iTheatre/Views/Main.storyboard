@@ -743,9 +743,9 @@
                                 </tableHeaderView>
                             </scrollView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Daw-NM-KZ1">
-                                <rect key="frame" x="238" y="253" width="244" height="17"/>
+                                <rect key="frame" x="238" y="114" width="244" height="42"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" placeholderString="Average age" id="lfO-lZ-YUM">
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="system" size="35"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -755,7 +755,7 @@
                             <constraint firstAttribute="trailing" secondItem="Daw-NM-KZ1" secondAttribute="trailing" id="B6t-F3-QLZ"/>
                             <constraint firstAttribute="bottom" secondItem="heH-kQ-eY2" secondAttribute="bottom" id="IQh-6J-NXd"/>
                             <constraint firstItem="Daw-NM-KZ1" firstAttribute="leading" secondItem="heH-kQ-eY2" secondAttribute="trailing" id="McL-gv-pFr"/>
-                            <constraint firstItem="Daw-NM-KZ1" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="N2b-zS-FWI"/>
+                            <constraint firstItem="Daw-NM-KZ1" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="N2b-zS-FWI"/>
                             <constraint firstAttribute="centerX" secondItem="heH-kQ-eY2" secondAttribute="trailing" id="jU7-o0-ti3"/>
                             <constraint firstItem="heH-kQ-eY2" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="sFq-r2-6Am"/>
                             <constraint firstItem="heH-kQ-eY2" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="v9P-tw-Qnf"/>
