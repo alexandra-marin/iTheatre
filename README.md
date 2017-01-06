@@ -22,4 +22,4 @@ The Tests folder contains unit and integration tests, separated in own folders. 
 
 ## Installation
 
-Run Install.command in root folder and enter your password when prompted.
+Run Install script (find it in the root folder) by right clicking and selecting “Open with Terminal” and enter your password when prompted.
