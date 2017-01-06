@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using AppKit;
 using Foundation;
 
@@ -8,12 +9,11 @@ namespace iTheatre
 	{
 		private const string cellIdentifier = "MovieCell";
 
-		private MoviesViewDataSource dataSource;
-		private Action<Movie> action;
 		private MoviesViewDataSource movies;
+		private Func<Movie, Task> action;
 		private bool working;
 
-		public MoviesViewDelegate(MoviesViewDataSource dataSource, Action<Movie> action)
+		public MoviesViewDelegate(MoviesViewDataSource dataSource, Func<Movie, Task> action)
 		{
 			this.movies = dataSource;
 			this.action = action;

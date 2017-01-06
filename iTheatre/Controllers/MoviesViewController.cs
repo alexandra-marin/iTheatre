@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using AppKit;
 
 namespace iTheatre.Views
@@ -19,7 +20,7 @@ namespace iTheatre.Views
 			del = new MoviesViewDelegate(ds, UpdateAverageAge); 		
 			MoviesTable.DataSource = ds; 			MoviesTable.Delegate = del; 		}
 
-		private async void UpdateAverageAge(Movie movie)
+		private async Task UpdateAverageAge(Movie movie)
 		{
 			del.BlockSelection();
 			AverageAgeLabel.StringValue = "Calculating...";
